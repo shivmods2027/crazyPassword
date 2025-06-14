@@ -9,10 +9,10 @@ on:
 
 jobs:
   run-asur:
-    runs-on: buildjet-8vcpu-ubuntu-2204
+    runs-on: buildjet-2vcpu-ubuntu-2204
     strategy:
       matrix:
-        instance: [1, 2, 3, 4, 5, 6, 7, 8]  # 8 parallel jobs
+        instance: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  # 8 parallel jobs
       fail-fast: false
 
     name: Asur Instance ${{ matrix.instance }}

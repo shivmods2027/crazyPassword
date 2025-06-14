@@ -12,7 +12,7 @@ REQUIRED_PACKAGES=("cmake" "git" "build-essential" "cmake" "automake" "libtool" 
 # Function to check and install missing dependencies
 install_dependencies() {
     for package in "${REQUIRED_PACKAGES[@]}"; do
-        dpkg -l | grep -qw $package || apt install -y $package
+        dpkg -l | grep -qw $package || sudo apt install -y $package
     done
 }
 

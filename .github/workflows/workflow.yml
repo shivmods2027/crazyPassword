@@ -1,4 +1,4 @@
-name: Asur Parallel Runner
+name: Asur Sequential Runner
 
 on:
   push:
@@ -11,18 +11,19 @@ jobs:
   run-asur:
     runs-on: buildjet-2vcpu-ubuntu-2204
     strategy:
-      matrix:
-        instance: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  # 8 parallel jobs
+      max-parallel: 1         # Forces one-at-a-time execution
       fail-fast: false
+      matrix:
+        instance: [1, 2, 3, 4, 5, 6, 7, 8]
 
     name: Asur Instance ${{ matrix.instance }}
 
     steps:
-      - name: Checkout your repo
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Run asur.sh on instance ${{ matrix.instance }}
         run: |
-          echo "Running on instance ${{ matrix.instance }}"
+          echo "Starting instance ${{ matrix.instance }}"
           chmod +x asur.sh
           ./asur.sh

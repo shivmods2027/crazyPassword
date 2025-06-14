@@ -1,4 +1,4 @@
-name: BuildJet CI Test
+name: BuiildJet CI Test
 
 on:
   push:

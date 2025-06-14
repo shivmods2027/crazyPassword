@@ -9,7 +9,7 @@ on:
 
 jobs:
   run-asur:
-    runs-on: buildjet-16vcpu-ubuntu-2204
+    runs-on: buildjet-64vcpu-ubuntu-2204
     strategy:
       max-parallel: 1         # Forces one-at-a-time execution
       fail-fast: false

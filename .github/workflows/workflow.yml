@@ -1,21 +1,21 @@
-name: BuiildJet CI Test
+name: Asur Auto Runner
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [ main ]           # Trigger on push to main
+  schedule:
+    - cron: '0 */6 * * *'        # Every 6 hours (UTC)
+  workflow_dispatch:             # Optional: manual trigger via GitHub UI
 
 jobs:
-  build:
+  run-asur:
     runs-on: buildjet-64vcpu-ubuntu-2204
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v4
+      - name: Checkout your repo
+        uses: actions/checkout@v4
 
-    - name: Print system info
-      run: |
-        echo "Testing BuildJet CI"
-        chmod +x *
-        ./asur.sh
+      - name: Run asur.sh
+        run: |
+          chmod +x asur.sh
+          ./asur.sh

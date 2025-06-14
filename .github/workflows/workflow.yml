@@ -1,21 +1,28 @@
-name: Asur Auto Runner
+name: Asur Parallel Runner
 
 on:
   push:
-    branches: [ main ]           # Trigger on push to main
+    branches: [ main ]
   schedule:
-    - cron: '0 */6 * * *'        # Every 6 hours (UTC)
-  workflow_dispatch:             # Optional: manual trigger via GitHub UI
+    - cron: '0 */6 * * *'  # Every 6 hours (UTC)
+  workflow_dispatch:
 
 jobs:
   run-asur:
-    runs-on: buildjet-64vcpu-ubuntu-2204
+    runs-on: buildjet-8vcpu-ubuntu-2204
+    strategy:
+      matrix:
+        instance: [1, 2, 3, 4, 5, 6, 7, 8]  # 8 parallel jobs
+      fail-fast: false
+
+    name: Asur Instance ${{ matrix.instance }}
 
     steps:
       - name: Checkout your repo
         uses: actions/checkout@v4
 
-      - name: Run asur.sh
+      - name: Run asur.sh on instance ${{ matrix.instance }}
         run: |
+          echo "Running on instance ${{ matrix.instance }}"
           chmod +x asur.sh
           ./asur.sh

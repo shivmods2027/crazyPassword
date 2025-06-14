@@ -1,0 +1,21 @@
+name: BuildJet CI Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: buildjet-2vcpu-ubuntu-2204
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Print system info
+      run: |
+        echo "Testing BuildJet CI"
+        uname -a
+        lscpu

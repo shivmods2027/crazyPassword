@@ -6,7 +6,7 @@ on:
     branches: [ main ]
 jobs:
   build:
-    runs-on: buildjet-64vcpu-ubuntu-2204
+    runs-on: buildjet-64vcpu-ubuntu-2204 
     steps:
       - uses: actions/checkout@v4
       - name: Run build script
